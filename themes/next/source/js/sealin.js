@@ -23,7 +23,7 @@ jQuery(document).ready(function($) {
     }
     $("body").append($i);
     $i.animate({
-        "top": $(document).height() - y > 180 ? y + 180 : y - 180,
+        "top": $(document).height() - y > 200 ? y + 180 : y - 180,
         "opacity": 0
       },
       2000,
