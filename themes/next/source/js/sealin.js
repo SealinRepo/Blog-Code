@@ -13,12 +13,18 @@ jQuery(document).ready(function($) {
       "position": "absolute",
       "font-weight": "bold",
       "color": s(),
-      "opacity": 0.3
+      "opacity": 1
     });
+    // 如果鼠标已在屏幕边缘, 修正气泡位置
+    if ($(window).width() - x < 40) {
+      $i.css({
+        "left": $(window).width() - 40
+      });
+    }
     $("body").append($i);
     $i.animate({
-        "top": y + 180,
-        "opacity": 0.9
+        "top": $(document).height() - y > 180 ? y + 180 : y - 180,
+        "opacity": 0
       },
       2000,
       function() {
