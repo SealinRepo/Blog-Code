@@ -664,7 +664,7 @@ gitment:
   proxy_gateway: # Address of api proxy, See: https://github.com/aimingoo/intersect
   redirect_protocol: # Protocol of redirect_uri with force_redirect_protocol when mint enabled
 
-# Gitalk
+# Gitalk 1
 # Demo: https://gitalk.github.io
 gitalk:
   enable: true
