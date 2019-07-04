@@ -84,6 +84,6 @@ feed:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:SealinRepo/sealinrepo.github.io.git #https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io
-  branch: master #published
-  message: redeploy
+  repo:
+    coding: git@git.dev.tencent.com:Sealin/Sealin.git,master
+    github: git@github.com:SealinRepo/sealinrepo.github.io.git,master

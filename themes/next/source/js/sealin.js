@@ -1,10 +1,10 @@
-var a_idx = 0;
+let a_idx = 0;
 jQuery(document).ready(function($) {
   $("body").click(function(e) {
-    var a = ["富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善"];
-    var $i = $("<span/>").text(a[a_idx]);
+    const a = ["富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善"];
+    const $i = $("<span/>").text(a[a_idx]);
     a_idx = (a_idx + 1) % a.length;
-    var x = e.pageX,
+    const x = e.pageX,
       y = e.pageY;
     $i.css({
       "z-index": 9999,
@@ -13,7 +13,8 @@ jQuery(document).ready(function($) {
       "position": "absolute",
       "font-weight": "bold",
       "color": s(),
-      "opacity": 1
+      "opacity": 1,
+      "font-family": "华文行楷, sans-serif"
     });
     // 如果鼠标已在屏幕边缘, 修正气泡位置
     if ($(window).width() - x < 40) {
