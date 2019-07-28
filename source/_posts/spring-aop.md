@@ -23,7 +23,15 @@ public class AopPointCut {
 }
 ```
 注意类上声明的@Aspect注解
-execution表达式的值为方法完整签名, 访问级别可以忽略.
+execution表达式的值为方法完整签名. 任何位置都可以使用通配符(*)替换, 比如上述表达式只为calcDiv()方法进行拦截, 如果改为如下形式, 将代理指定类中的所有方法
+```java
+@Pointcut("execution(void net.sealin.web.demo.behavior.aop.bean.AopCalc.*(..))")
+```
+改为如下形式, 将代理指定包和所有子包下的所有方法
+```java
+@Pointcut("execution(* net.sealin.web.demo.behavior.aop.bean..*.*(..))")
+```
+如果还有不明白的地方请查找 pointcut execution 相关资料进行深入理解。
 # 注册到容器
 可以在配置类中使用@Bean注解手动将切面类加入容器, 或者标记为@Component扫描此包路径
 # 方法增强

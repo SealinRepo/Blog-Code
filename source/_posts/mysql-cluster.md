@@ -3,10 +3,9 @@ title: MySQL搭建主从同步数据库(一主多从)
 tags:
   - 数据库
   - MySQL
-originContent: ''
 categories:
-  - 数据库
   - 技术
+  - 数据库
 toc: true
 date: 2019-07-02 23:15:20
 ---
