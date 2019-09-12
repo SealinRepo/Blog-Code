@@ -5,7 +5,6 @@ tags:
   - SpringBoot
   - Nacos
   - SpringCloud
-originContent: ''
 categories:
   - 技术
   - JAVA
@@ -122,6 +121,19 @@ spring:
 
 # 注册中心
 ## 服务注册
+由于上文我们将环境切换到了测试环境, 项目启动时会读取nacos/appname-test.yml配置, 根据这个特性, 到nacos控制台在test命名空间下添加一个配置文件, 用于指定服务注册的命名空间
+![image.png](/images/2019/08/16/c1fcbaf0-bfcc-11e9-8866-5302bf177721.png)
+
+	nacos-demo-test.yml
+内容如下:
+```yml
+spring:
+  cloud:
+    nacos:
+      discovery:
+        namespace: 141c776d-9524-4d84-a70d-9df2ea547708
+```
+
 在应用启动类上加入
 
 	@EnableDiscoveryClient
