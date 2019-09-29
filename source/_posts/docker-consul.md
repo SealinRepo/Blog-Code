@@ -4,7 +4,6 @@ tags:
   - 基础服务
   - Docker
   - Consul
-originContent: ''
 categories:
   - 技术
   - 微服务
@@ -19,7 +18,8 @@ docker pull consul
 ```
 
 # 运行Consul服务
-与多机部署不同的是需要将Consul需要的端口转发到宿主机, 以下是Consul运行用到的端口
+单机部署Docker内已实现互通, 不用人为干预通信端口转发, 启动后地址为172.17.0.2, 172.17.0.3 .... 只需要将8500端口转发出来即可.
+多机部署需要将Consul需要的端口转发到宿主机, 以下是Consul运行用到的端口
 
 |端口|说明|
 |-|-|
@@ -31,11 +31,11 @@ docker pull consul
 
 ```bash
 # 任选一个服务打开Web管理界面
-docker run -d --name consul1 -p 8500:8500 -p 8300:8300 -p 8301:8301 -p 8302:8302 -p 8600:8600 -e CONSUL_BIND_INTERFACE=eth0 consul agent --node=node1 --server=true --bootstrap-expect=3 --client=0.0.0.0 -ui
+docker run -d --name consul1 -p 8500:8500 -e CONSUL_BIND_INTERFACE=eth0 consul agent --node=node1 --server=true --bootstrap-expect=3 --client=0.0.0.0 -ui
 
 # 将后续打开的服务加入集群
-docker run -d --name consul2 -e CONSUL_BIND_INTERFACE=eth0 consul agent --node=node2 --server=true --client=0.0.0.0 --join 192.168.10.100
-docker run -d --name consul3 -e CONSUL_BIND_INTERFACE=eth0 consul agent --node=node3 --server=true --client=0.0.0.0 --join 192.168.10.100
+docker run -d --name consul2 -e CONSUL_BIND_INTERFACE=eth0 consul agent --node=node2 --server=true --client=0.0.0.0 --join 172.17.0.2
+docker run -d --name consul3 -e CONSUL_BIND_INTERFACE=eth0 consul agent --node=node3 --server=true --client=0.0.0.0 --join 172.17.0.2
 ```
 # 完成
 控制台地址: http://IP:8500
