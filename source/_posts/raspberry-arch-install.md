@@ -4,6 +4,7 @@ tags:
   - 树莓派
 categories:
   - 折腾实录
+  - 树莓派
 toc: true
 date: 2019-11-17 22:44:15
 ---
@@ -52,7 +53,7 @@ fdisk /dev/sdb
 o
 # 新建BOOT分区
 n
-# 新建根分区
+# 新建主分区(p)
 [ENTER]
 # 选择分区1
 [ENTER]
@@ -68,6 +69,7 @@ n
 [ENTER]
 [ENTER]
 [ENTER]
+...一路回车(直到回到提示按m显示参数列表这里)
 # 保存分区配置并退出
 w
 ```
