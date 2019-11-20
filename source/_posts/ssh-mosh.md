@@ -31,4 +31,4 @@ date: 2019-11-20 20:15:41
 ```bash
 ssh-keygen -t ed25519
 ```
-  生成后将私钥文件(~/.ssh/id_ed25519)的内容复制到mosh的[Add ssh key]界面中
+  生成后将私钥文件(~/.ssh/id_ed25519)的内容复制到mosh的[Add ssh key]界面中.
