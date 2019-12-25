@@ -3,10 +3,8 @@ title: 11 | 垃圾回收（上）
 tags:
   - JAVA
   - JVM
-originContent: ''
 categories:
-  - 技术
-  - JAVA
+  - 阅读
   - 深入拆解 Java 虚拟机
 toc: true
 date: 2019-12-25 13:07:21

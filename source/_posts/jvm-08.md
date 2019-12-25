@@ -3,10 +3,8 @@ title: 08 | JVM是怎么实现invokedynamic的？（上）
 tags:
   - JAVA
   - JVM
-originContent: ''
 categories:
-  - 技术
-  - JAVA
+  - 阅读
   - 深入拆解 Java 虚拟机
 toc: true
 date: 2019-12-25 12:54:20

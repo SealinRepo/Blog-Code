@@ -3,15 +3,12 @@ title: 12 | 垃圾回收（下）
 tags:
   - JAVA
   - JVM
-originContent: ''
 categories:
-  - 技术
-  - JAVA
+  - 阅读
   - 深入拆解 Java 虚拟机
 toc: true
 date: 2019-12-25 13:11:30
 ---
-
 
 {% aplayer 音频12 郑雨迪 https://res001.geekbang.org/resource/audio/7f/8f/7f291912c1698a70c4df55e7fa51a58f.mp3 %}
 
