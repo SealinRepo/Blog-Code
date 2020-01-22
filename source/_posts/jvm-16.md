@@ -2,6 +2,7 @@
 title: 16 | 即时编译（上）
 tags:
   - JAVA
+  - JVM
 originContent: ''
 categories:
   - 阅读
