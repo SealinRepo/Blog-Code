@@ -85,5 +85,5 @@ feed:
 deploy:
   type: git
   repo:
-    coding: git@git.dev.tencent.com:Sealin/Sealin.git,master
+#    coding: git@git.dev.tencent.com:Sealin/Sealin.git,master
     github: git@github.com:SealinRepo/sealinrepo.github.io.git,master
