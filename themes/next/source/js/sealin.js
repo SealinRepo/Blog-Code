@@ -1,18 +1,32 @@
 let a_idx = 0;
-jQuery(document).ready(function($) {
-  $("body").click(function(e) {
+jQuery(document).ready(function ($) {
+  $(".container").click(function (e) {
+    var ele = $(e.target);
+    if (ele[0].tagName === 'A') {
+      return;
+    }
     const a = ["富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善"];
     const $i = $("<span/>").text(a[a_idx]);
     a_idx = (a_idx + 1) % a.length;
     const x = e.pageX,
       y = e.pageY;
+    var isLight = false;
+    var maxDepth = 20;
+    var currentDepth = 0;
+    for (var i = 0; i < maxDepth; i++) {
+      if (ele.attr('id') === 'sidebar') {
+        isLight = true;
+        break;
+      }
+      ele = ele.parent();
+    }
     $i.css({
-      "z-index": 9999,
+      "z-index": 1050,
       "top": y - 20,
       "left": x,
       "position": "absolute",
       "font-weight": "bold",
-      "color": s(),
+      "color": isLight ? light() : s(),
       "opacity": 1,
       "font-family": "华文行楷, sans-serif"
     });
@@ -28,7 +42,7 @@ jQuery(document).ready(function($) {
         "opacity": 0
       },
       2000,
-      function() {
+      function () {
         $i.remove();
       });
   });
@@ -40,5 +54,9 @@ function delay() {
 }
 
 function s() {
-  return "rgb(" + ~~ (150 * Math.random()) + "," + ~~ (150 * Math.random()) + "," + ~~ (150 * Math.random()) + ")"
+  return "rgb(" + ~~(150 * Math.random()) + "," + ~~(150 * Math.random()) + "," + ~~(150 * Math.random()) + ")"
+}
+
+function light() {
+  return "rgb(" + ~~(250 * Math.random()) + "," + ~~(250 * Math.random()) + "," + ~~(250 * Math.random()) + ")"
 }
