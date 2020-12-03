@@ -1,8 +1,8 @@
 ---
 title: Mac安装软件后打不开解决方案
 tags:
-  - 操作系统
   - MAC
+  - 操作系统
 categories:
   - 经验
 toc: true
@@ -17,3 +17,15 @@ date: 2020-03-06 09:46:09
 sudo xattr -d com.apple.quarantine /Applications/xx.app
 ```
 将xx.app替换为提示损坏的app名称， 如qq.app
+
+# 因为Apple无法检查其是否包含恶意软件
+
+启用任何来源
+```bash
+sudo spctl --master-disable
+```
+
+关闭任何来源
+```bash
+sudo spctl --master-enable
+```
