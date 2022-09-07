@@ -1,0 +1,61 @@
+---
+title: SQLServer锁表查询及解锁
+tags:
+  - 数据库
+  - 问题解决
+originContent: ''
+categories:
+  - 数据库
+toc: false
+date: 2022-09-07 11:36:23
+---
+
+# 1. 查询锁表会话和表名
+
+```SQL
+select request_session_id 锁表进程, OBJECT_NAME(resource_associated_entity_id) 被锁表名
+from sys.dm_tran_locks where resource_type = 'OBJECT';
+```
+
+# 2. 查询锁表状态及锁表SQL
+
+```SQL
+SELECT A.BLOCKING_SESSION_ID, A.WAIT_DURATION_MS, A.SESSION_ID, B.TEXT
+FROM SYS.DM_OS_WAITING_TASKS A,
+     (SELECT T.TEXT, C.SESSION_ID
+      FROM SYS.DM_EXEC_CONNECTIONS C
+               CROSS APPLY SYS.DM_EXEC_SQL_TEXT(C.MOST_RECENT_SQL_HANDLE) T) B
+WHERE A.SESSION_ID = B.SESSION_ID
+  AND A.BLOCKING_SESSION_ID IS NOT NULL;
+```
+
+# 3. 查询阻塞语句
+
+```SQL
+SELECT BL.SPID BLOCKING_SESSION,
+       BL.BLOCKED BLOCKED_SESSION,
+       ST.TEXT BLOCKEDTEXT,
+       SB.TEXT BLOCKINGTEXT
+FROM (SELECT SPID, BLOCKED
+      FROM SYS.SYSPROCESSES A
+      WHERE BLOCKED > 0
+        AND NOT EXISTS (SELECT 1
+                        FROM SYS.SYSPROCESSES B
+                        WHERE BLOCKED > 0
+                          AND A.BLOCKED = B.SPID)
+      UNION
+      SELECT SPID, BLOCKED
+      FROM SYS.SYSPROCESSES
+      WHERE BLOCKED > 0) BL,
+     (SELECT T.TEXT, C.SESSION_ID
+      FROM SYS.DM_EXEC_CONNECTIONS C
+               CROSS APPLY SYS.DM_EXEC_SQL_TEXT(C.MOST_RECENT_SQL_HANDLE) T) ST,
+     (SELECT T.TEXT, C.SESSION_ID
+      FROM SYS.DM_EXEC_CONNECTIONS C
+               CROSS APPLY SYS.DM_EXEC_SQL_TEXT(C.MOST_RECENT_SQL_HANDLE) T) SB
+WHERE BL.BLOCKED = ST.SESSION_ID
+  AND BL.SPID = SB.SESSION_ID;
+```
+
+# 4. 批量生成解锁语句
+
